@@ -44,6 +44,7 @@
         "test1" : "data1"
       }
     },
+    "rwdd" : 0,
     "ext" : {
       "test1" : "data1"
     }
@@ -80,7 +81,8 @@
       "ext" : {
         "test1" : "data1"
       }
-    }
+    },
+    "rwdd" : 1
   }, {
     "id" : "imp3",
     "native" : {

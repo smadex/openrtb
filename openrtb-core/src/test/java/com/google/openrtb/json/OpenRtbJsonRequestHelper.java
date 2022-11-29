@@ -234,7 +234,8 @@ class OpenRtbJsonRequestHelper {
                 .setAt(OpenRtb.AuctionType.SECOND_PRICE)
                 .setExtension(TestExt.testDeal, OpenRtbJsonFactoryHelper.test1))
             .setExtension(TestExt.testPmp, OpenRtbJsonFactoryHelper.test1))
-        .setExtension(TestExt.testImp, OpenRtbJsonFactoryHelper.test1);
+        .setExtension(TestExt.testImp, OpenRtbJsonFactoryHelper.test1)
+        .setRwdd(false);
 
     @SuppressWarnings("deprecation")
     OpenRtb.BidRequest.Imp.Builder imp2 = OpenRtb.BidRequest.Imp.newBuilder()
@@ -271,7 +272,8 @@ class OpenRtbJsonRequestHelper {
                     .setId("compad2")
                     .setW(110)
                     .setH(60)))
-            .setExtension(TestExt.testVideo, OpenRtbJsonFactoryHelper.test1));
+            .setExtension(TestExt.testVideo, OpenRtbJsonFactoryHelper.test1))
+        .setRwdd(true);
 
     OpenRtb.BidRequest.Imp.Native.Builder nativ = OpenRtb.BidRequest.Imp.Native.newBuilder()
         .setVer("1.0")
