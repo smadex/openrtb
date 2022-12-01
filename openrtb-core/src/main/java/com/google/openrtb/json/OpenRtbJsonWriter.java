@@ -234,6 +234,9 @@ public class OpenRtbJsonWriter extends AbstractOpenRtbJsonWriter {
       }
       gen.writeEndArray();
     }
+    if (imp.hasRwdd()) {
+      writeIntBoolField("rwdd", imp.getRwdd(), gen);
+    }
   }
 
   public final void writeMetric(Metric metric, JsonGenerator gen) throws IOException {

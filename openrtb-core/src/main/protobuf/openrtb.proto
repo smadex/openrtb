@@ -230,6 +230,9 @@ message BidRequest {
     // An array of Metric object (Section 3.2.5).
     repeated Metric metric = 17;
 
+    // Indicates whether the user receives a reward for viewing the ad.
+    optional bool rwdd = 18;
+
     // Extensions.
     extensions 100 to 9999;
 

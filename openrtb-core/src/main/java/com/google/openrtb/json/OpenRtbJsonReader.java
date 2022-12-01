@@ -355,6 +355,9 @@ public class OpenRtbJsonReader extends AbstractOpenRtbJsonReader {
           imp.addMetric(readMetric(par));
         }
         break;
+      case "rwdd":
+        imp.setRwdd(par.getValueAsBoolean());
+        break;
       default:
         readOther(imp, par, fieldName);
     }
