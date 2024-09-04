@@ -217,6 +217,14 @@
       "test1" : "data1"
     }
   },
+  "source" : {
+    "schain" : {
+      "complete" : 1,
+      "nodes" : [ {
+        "asi" : "google.com"
+      } ]
+    }
+  },
   "ext" : {
     "test1" : "data1",
     "test2ext" : {

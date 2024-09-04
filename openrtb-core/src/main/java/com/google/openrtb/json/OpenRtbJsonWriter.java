@@ -48,6 +48,8 @@ import com.google.openrtb.OpenRtb.BidRequest.Publisher;
 import com.google.openrtb.OpenRtb.BidRequest.Regs;
 import com.google.openrtb.OpenRtb.BidRequest.Site;
 import com.google.openrtb.OpenRtb.BidRequest.Source;
+import com.google.openrtb.OpenRtb.BidRequest.Source.Schain;
+import com.google.openrtb.OpenRtb.BidRequest.Source.Schain.Node;
 import com.google.openrtb.OpenRtb.BidRequest.User;
 import com.google.openrtb.OpenRtb.BidResponse;
 import com.google.openrtb.OpenRtb.BidResponse.SeatBid;
@@ -1120,6 +1122,41 @@ public class OpenRtbJsonWriter extends AbstractOpenRtbJsonWriter {
     }
     if (source.hasPchain()) {
       gen.writeStringField("pchain", source.getPchain());
+    }
+    if (source.hasSchain()) {
+      gen.writeFieldName("schain");
+      writeSchain(source.getSchain(), gen);
+    }
+  }
+
+  public final void writeSchain(Schain schain, JsonGenerator gen) throws IOException {
+    gen.writeStartObject();
+    writeSchainFields(schain, gen);
+    gen.writeEndObject();
+  }
+
+  protected void writeSchainFields(Schain schain, JsonGenerator gen) throws IOException {
+    if (schain.hasComplete()) {
+      gen.writeNumberField("complete", schain.getComplete());
+    }
+    if (schain.getNodesCount() != 0) {
+      gen.writeArrayFieldStart("nodes");
+      for (Node node : schain.getNodesList()) {
+        writeNode(node, gen);
+      }
+      gen.writeEndArray();
+    }
+  }
+
+  public final void writeNode(Node node, JsonGenerator gen) throws IOException {
+    gen.writeStartObject();
+    writeNodeFields(node, gen);
+    gen.writeEndObject();
+  }
+
+  protected void writeNodeFields(Node node, JsonGenerator gen) throws IOException {
+    if (node.hasAsi()) {
+      gen.writeStringField("asi", node.getAsi());
     }
   }
 
