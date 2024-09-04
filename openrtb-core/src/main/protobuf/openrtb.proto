@@ -143,8 +143,34 @@ message BidRequest {
     // RECOMMENDED by the OpenRTB specification.
     optional string pchain = 3;
 
+    // The SupplyChain object enables buyers to see all parties who are
+    // selling or reselling a given bid request.
+    optional Schain schain = 4;
+
     // Extensions.
     extensions 100 to 9999;
+
+    // OpenRTB 2.6: This object represents both the links in the supply
+    // chain as well as an indicator whether or not the supply chain is
+    // complete. Details via the SupplyChain object (section 3.2.25)
+    message Schain {
+        // Flag indicating whether the chain contains all nodes involved
+        // in the transaction leading back to the owner of the site, app
+        // or other medium of the inventory, where 0 = no, 1 = yes.
+        optional int32 complete = 1;
+
+        // Array of SupplyChainNode objects in the order of the chain.
+        repeated Node nodes = 2;
+
+        // This object is associated with a SupplyChain object as an array of
+        // nodes. These nodes define the identity of an entity participating
+        // in the supply chain of a bid request.
+        message Node {
+            // The canonical domain name of the SSP, Exchange, Header
+            // Wrapper, etc system that bidders connect to.
+            optional string asi = 1;
+        }
+    }
   }
 
   // OpenRTB 2.0: This object describes an ad placement or impression

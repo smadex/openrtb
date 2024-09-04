@@ -387,6 +387,13 @@ class OpenRtbJsonRequestHelper {
         .setCoppa(true)
         .setExtension(TestExt.testRegs, OpenRtbJsonFactoryHelper.test1);
 
+    OpenRtb.BidRequest.Source.Builder source = OpenRtb.BidRequest.Source.newBuilder()
+        .setSchain(OpenRtb.BidRequest.Source.Schain.newBuilder()
+            .setComplete(1)
+            .addNodes(OpenRtb.BidRequest.Source.Schain.Node.newBuilder()
+                    .setAsi("google.com")
+            ));
+
     OpenRtb.BidRequest.Builder bidRequest = OpenRtb.BidRequest.newBuilder()
         .setId("9zj61whbdl319sjgz098lpys5cngmtro_full_" + isRootNative + "_" + isNativeObject)
         .addImp(imp1)
@@ -403,6 +410,7 @@ class OpenRtbJsonRequestHelper {
         .addBadv("badguy")
         .setRegs(regs)
         .setTest(false)
+        .setSource(source)
         .setExtension(TestExt.testRequest2, OpenRtbJsonFactoryHelper.test2)
         .setExtension(TestExt.testRequest1, OpenRtbJsonFactoryHelper.test1);
 

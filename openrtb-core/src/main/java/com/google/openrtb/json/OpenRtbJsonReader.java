@@ -58,6 +58,8 @@ import com.google.openrtb.OpenRtb.BidRequest.Publisher;
 import com.google.openrtb.OpenRtb.BidRequest.Regs;
 import com.google.openrtb.OpenRtb.BidRequest.Site;
 import com.google.openrtb.OpenRtb.BidRequest.Source;
+import com.google.openrtb.OpenRtb.BidRequest.Source.Schain;
+import com.google.openrtb.OpenRtb.BidRequest.Source.Schain.Node;
 import com.google.openrtb.OpenRtb.BidRequest.User;
 import com.google.openrtb.OpenRtb.BidResponse;
 import com.google.openrtb.OpenRtb.BidResponse.SeatBid;
@@ -262,8 +264,60 @@ public class OpenRtbJsonReader extends AbstractOpenRtbJsonReader {
       case "pchain":
         source.setPchain(par.getText());
         break;
+      case "schain":
+        source.setSchain(readSchain(par));
+        break;
       default:
         readOther(source, par, fieldName);
+    }
+  }
+
+  public final Schain.Builder readSchain(JsonParser par) throws IOException {
+    Schain.Builder schain = Schain.newBuilder();
+    for (startObject(par); endObject(par); par.nextToken()) {
+      String fieldName = getCurrentName(par);
+      if (par.nextToken() != JsonToken.VALUE_NULL) {
+        readSchainField(par, schain, fieldName);
+      }
+    }
+    return schain;
+  }
+
+  protected void readSchainField(JsonParser par, Schain.Builder schain, String fieldName)
+          throws IOException {
+    switch (fieldName) {
+      case "complete":
+        schain.setComplete(par.getIntValue());
+        break;
+      case "nodes":
+        for (startArray(par); endArray(par); par.nextToken()) {
+          schain.addNodes(readNode(par));
+        }
+        break;
+      default:
+        break;
+    }
+  }
+
+  public final Node.Builder readNode(JsonParser par) throws IOException {
+    Node.Builder node = Node.newBuilder();
+    for (startObject(par); endObject(par); par.nextToken()) {
+      String fieldName = getCurrentName(par);
+      if (par.nextToken() != JsonToken.VALUE_NULL) {
+        readNodeField(par, node, fieldName);
+      }
+    }
+    return node;
+  }
+
+  protected void readNodeField(JsonParser par, Node.Builder node, String fieldName)
+          throws IOException {
+    switch (fieldName) {
+      case "asi":
+        node.setAsi(par.getValueAsString());
+        break;
+      default:
+        break;
     }
   }
 
