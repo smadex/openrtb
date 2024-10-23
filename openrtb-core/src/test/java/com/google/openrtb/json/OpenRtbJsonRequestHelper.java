@@ -267,6 +267,8 @@ class OpenRtbJsonRequestHelper {
             .setBoxingallowed(false)
             .addPlaybackmethod(OpenRtb.PlaybackMethod.CLICK_TO_PLAY)
             .setPos(OpenRtb.AdPosition.ABOVE_THE_FOLD)
+            .setPlacement(OpenRtb.VideoPlacementType.IN_ARTICLE_PLACEMENT)
+            .setPlcmt(OpenRtb.VideoPlcmtType.STANDALONE_PLACEMENT)
             .setCompanionad21(OpenRtb.BidRequest.Imp.Video.CompanionAd.newBuilder()
                 .addBanner(OpenRtb.BidRequest.Imp.Banner.newBuilder()
                     .setId("compad2")
