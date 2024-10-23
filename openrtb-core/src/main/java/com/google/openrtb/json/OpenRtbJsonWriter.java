@@ -427,6 +427,9 @@ public class OpenRtbJsonWriter extends AbstractOpenRtbJsonWriter {
     if (video.hasPlaybackend()) {
       writeEnumField("playbackend", video.getPlaybackend(), gen);
     }
+    if(video.hasPlcmt()){
+      writeEnumField("plcmt", video.getPlcmt(), gen);
+    }
   }
 
   public final void writeCompanionAd21(CompanionAd companionad21, JsonGenerator gen)

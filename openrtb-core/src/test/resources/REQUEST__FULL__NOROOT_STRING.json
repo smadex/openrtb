@@ -78,6 +78,8 @@
       },
       "api" : [ 2 ],
       "companiontype" : [ 2 ],
+      "placement" : 3,
+      "plcmt" : 4,
       "ext" : {
         "test1" : "data1"
       }

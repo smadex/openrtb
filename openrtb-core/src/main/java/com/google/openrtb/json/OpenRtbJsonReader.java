@@ -83,6 +83,7 @@ import com.google.openrtb.OpenRtb.QAGMediaRating;
 import com.google.openrtb.OpenRtb.UserAgentSource;
 import com.google.openrtb.OpenRtb.VideoLinearity;
 import com.google.openrtb.OpenRtb.VideoPlacementType;
+import com.google.openrtb.OpenRtb.VideoPlcmtType;
 import com.google.openrtb.OpenRtb.VolumeNormalizationMode;
 import com.google.openrtb.util.ProtoUtils;
 import com.google.protobuf.ByteString;
@@ -710,6 +711,9 @@ public class OpenRtbJsonReader extends AbstractOpenRtbJsonReader {
         break;
       case "playbackend":
         video.setPlaybackend(PlaybackCessationMode.forNumber(par.getIntValue()));
+        break;
+      case "plcmt":
+        video.setPlcmt(VideoPlcmtType.forNumber(par.getIntValue()));
         break;
       default:
         readOther(video, par, fieldName);
