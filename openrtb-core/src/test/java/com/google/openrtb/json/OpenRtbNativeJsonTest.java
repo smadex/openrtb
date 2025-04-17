@@ -80,6 +80,15 @@ public class OpenRtbNativeJsonTest {
   }
 
   @Test
+  public void testRequest_eventTrackers() throws Exception {
+    String rawEventTrackers = "{\"eventtrackers\":[{}, {\"event\":555,\"methods\":[2]}, {\"event\":1,\"methods\":[2]}]}}";
+    NativeRequest.EventTrackers.Builder eventTrackers =
+            NativeRequest.EventTrackers.newBuilder().setEvent(EventType.IMPRESSION).addMethods(EventTrackingMethod.JS);
+
+    testRequest(newJsonFactory(), NativeRequest.newBuilder().addEventtrackers(eventTrackers).build(), rawEventTrackers);
+  }
+
+  @Test
   public void testResponse() throws IOException {
     testResponse(newJsonFactory(), newNativeResponse().build());
   }
@@ -120,6 +129,10 @@ public class OpenRtbNativeJsonTest {
   static void testRequest(OpenRtbJsonFactory jsonFactory, NativeRequest req) throws IOException {
     String jsonReq = jsonFactory.newNativeWriter().writeNativeRequest(req);
     logger.info(jsonReq);
+    testRequest(jsonFactory, req, jsonReq);
+  }
+
+  static void testRequest(OpenRtbJsonFactory jsonFactory, NativeRequest req, String jsonReq) throws IOException {
     NativeRequest req2 = jsonFactory.newNativeReader().readNativeRequest(jsonReq);
     assertThat(req2).isEqualTo(req);
   }

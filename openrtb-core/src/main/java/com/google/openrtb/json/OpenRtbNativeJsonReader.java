@@ -183,7 +183,11 @@ public class OpenRtbNativeJsonReader extends AbstractOpenRtbJsonReader {
         break;
       case "eventtrackers":
         for (startArray(par); endArray(par); par.nextToken()) {
-          req.addEventtrackers(readReqEventTrackers(par));
+          NativeRequest.EventTrackers.Builder builder = readReqEventTrackers(par);
+
+          if(builder.hasEvent()){
+            req.addEventtrackers(builder);
+          }
         }
         break;
       default:
