@@ -2494,10 +2494,7 @@ enum AdPosition {
 
   ABOVE_THE_FOLD = 1;
 
-  // May or may not be immediately visible depending on screen size and
-  // resolution.
-  // @deprecated
-  DEPRECATED_LIKELY_BELOW_THE_FOLD = 2;
+  LOCKED = 2;
 
   BELOW_THE_FOLD = 3;
 
