@@ -41,11 +41,11 @@ public class OpenRtbUtilsTest {
 
   @Test
   public void testCatUtils() {
-    assertThat(OpenRtbUtils.categoryFromName("IAB10_1")).isSameInstanceAs(ContentCategory.IAB10_1);
-    assertThat(OpenRtbUtils.categoryFromName("IAB10-1")).isSameInstanceAs(ContentCategory.IAB10_1);
+    assertThat(OpenRtbUtils.categoryFromName("IAB_10_SUB_1")).isSameInstanceAs(ContentCategory.IAB_10_SUB_1);
+    assertThat(OpenRtbUtils.categoryFromName("IAB10-1")).isSameInstanceAs(ContentCategory.IAB_10_SUB_1);
     assertThat(OpenRtbUtils.categoryToJsonName("IAB10-1")).isEqualTo("IAB10-1");
-    assertThat(OpenRtbUtils.categoryToJsonName("IAB10_1")).isEqualTo("IAB10-1");
-    assertThat(OpenRtbUtils.categoryToJsonName(ContentCategory.IAB10_1)).isEqualTo("IAB10-1");
+    assertThat(OpenRtbUtils.categoryToJsonName("IAB_10_SUB_1")).isEqualTo("IAB10-1");
+    assertThat(OpenRtbUtils.categoryToJsonName(ContentCategory.IAB_10_SUB_1)).isEqualTo("IAB10-1");
   }
 
   @Test

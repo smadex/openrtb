@@ -59,6 +59,8 @@ public final class OpenRtbUtils {
    */
   public static final Predicate<Imp> IMP_ALL = imp -> true;
 
+  private static final String IAB = "IAB";
+  private static final String SUB = "_SUB_";
   private static final ImmutableMap<Object, String> CAT_TO_JSON;
   private static final ImmutableMap<String, ContentCategory> NAME_TO_CAT;
 
@@ -66,7 +68,16 @@ public final class OpenRtbUtils {
     ImmutableMap.Builder<Object, String> catToJson = ImmutableMap.builder();
     ImmutableMap.Builder<String, ContentCategory> nameToCat = ImmutableMap.builder();
     for (ContentCategory cat : ContentCategory.values()) {
-      String json = cat.name().replace('_', '-');
+      if (cat == ContentCategory.UNDEFINED) {
+        catToJson.put(cat.name(), cat.name());
+        catToJson.put(cat, cat.name());
+        nameToCat.put(cat.name(), cat);
+        continue;
+      }
+
+      String unprefixedName = cat.name().substring(4);
+      String json = IAB + unprefixedName.replace(SUB, "-");
+
       catToJson.put(cat.name(), json);
       catToJson.put(cat, json);
       nameToCat.put(cat.name(), cat);
