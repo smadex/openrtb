@@ -717,6 +717,8 @@ public class OpenRtbJsonTest {
         .addBadv("badguy")
         .setRegs(Regs.newBuilder()
             .setCoppa(true)
+            .setGdpr(true)
+            .setUsPrivacy("1---")
             .setExtension(TestExt.testRegs, test1))
         .setTest(false)
         .addAllBapp(asList("app1", "app2"))

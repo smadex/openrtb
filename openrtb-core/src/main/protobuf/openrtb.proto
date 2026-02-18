@@ -1364,6 +1364,14 @@ message BidRequest {
     // established by the USA FTC, where 0 = no, 1 = yes.
     optional bool coppa = 1;
 
+    // Flag that indicates whether or not the request is subject to GDPR
+    // regulations, 0 = no, 1 = yes, omission indicates unknown.
+    optional bool gdpr = 2;
+
+    // Communicates signals regarding consumer privacy under US privacy
+    // regulation.
+    optional string us_privacy = 3;
+
     // Extensions.
     extensions 100 to 9999;
   }
