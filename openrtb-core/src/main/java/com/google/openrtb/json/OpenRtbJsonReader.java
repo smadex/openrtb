@@ -339,6 +339,12 @@ public class OpenRtbJsonReader extends AbstractOpenRtbJsonReader {
       case "coppa":
         reg.setCoppa(par.getValueAsBoolean());
         break;
+      case "gdpr":
+        reg.setGdpr(par.getValueAsBoolean());
+        break;
+      case "us_privacy":
+        reg.setUsPrivacy(par.getText());
+        break;
       default:
         readOther(reg, par, fieldName);
     }

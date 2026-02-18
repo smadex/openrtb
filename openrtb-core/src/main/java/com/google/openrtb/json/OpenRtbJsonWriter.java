@@ -1107,6 +1107,12 @@ public class OpenRtbJsonWriter extends AbstractOpenRtbJsonWriter {
     if (regs.hasCoppa()) {
       writeIntBoolField("coppa", regs.getCoppa(), gen);
     }
+    if (regs.hasGdpr()) {
+      writeIntBoolField("gdpr", regs.getGdpr(), gen);
+    }
+    if (regs.hasUsPrivacy()) {
+      gen.writeStringField("us_privacy", regs.getUsPrivacy());
+    }
   }
 
   public final void writeSource(Source source, JsonGenerator gen) throws IOException {

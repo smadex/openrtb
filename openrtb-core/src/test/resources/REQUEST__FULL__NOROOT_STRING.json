@@ -207,6 +207,8 @@
   "badv" : [ "badguy" ],
   "regs" : {
     "coppa" : 1,
+    "gdpr" : 1,
+    "us_privacy" : "1---",
     "ext" : {
       "test1" : "data1"
     }

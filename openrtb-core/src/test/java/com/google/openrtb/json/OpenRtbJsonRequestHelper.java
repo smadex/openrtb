@@ -387,6 +387,8 @@ class OpenRtbJsonRequestHelper {
 
     OpenRtb.BidRequest.Regs.Builder regs = OpenRtb.BidRequest.Regs.newBuilder()
         .setCoppa(true)
+        .setGdpr(true)
+        .setUsPrivacy("1---")
         .setExtension(TestExt.testRegs, OpenRtbJsonFactoryHelper.test1);
 
     OpenRtb.BidRequest.Source.Builder source = OpenRtb.BidRequest.Source.newBuilder()
