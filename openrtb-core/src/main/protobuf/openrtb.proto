@@ -169,6 +169,9 @@ message BidRequest {
             // The canonical domain name of the SSP, Exchange, Header
             // Wrapper, etc system that bidders connect to.
             optional string asi = 1;
+
+            // The OpenRTB RequestId of the request as issued by this seller.
+            optional string rid = 3;
         }
     }
   }
@@ -989,8 +992,24 @@ message BidRequest {
     // Content language using ISO-639-1-alpha-2.
     optional string language = 19;
 
+    // Details about the channel
+    optional Channel channel = 31;
+
     // Extensions.
     extensions 100 to 9999;
+  }
+
+  // This object describes the channel an ad will be displayed on. A Channel is
+  // defined as the entity that curates a content library, or stream within a
+  // brand name for viewers. Examples are specific view selectable ‘channels'
+  // within linear and streaming television (MTV, HGTV, CNN, BBC One, etc) or a
+  // specific stream of audio content commonly called ‘stations.' Name is a
+  // human-readable field while domain and id can be used for reporting and
+  // targeting purposes.
+  message Channel {
+    // Channel the content is on (e.g., a TV channel like "WABC-TV").
+    optional string name = 2;
+
   }
 
   // OpenRTB 2.0: This object defines the producer of the content in which
