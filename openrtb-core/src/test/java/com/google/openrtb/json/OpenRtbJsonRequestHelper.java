@@ -396,6 +396,7 @@ class OpenRtbJsonRequestHelper {
             .setComplete(1)
             .addNodes(OpenRtb.BidRequest.Source.Schain.Node.newBuilder()
                     .setAsi("google.com")
+                    .setRid("dc3f28cf-cec4-2772-3f90-0c9112e3b387")
             ));
 
     OpenRtb.BidRequest.Builder bidRequest = OpenRtb.BidRequest.newBuilder()

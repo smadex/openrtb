@@ -27,6 +27,7 @@ import com.google.openrtb.Gender;
 import com.google.openrtb.OpenRtb.BidRequest;
 import com.google.openrtb.OpenRtb.BidRequest.App;
 import com.google.openrtb.OpenRtb.BidRequest.Content;
+import com.google.openrtb.OpenRtb.BidRequest.Channel;
 import com.google.openrtb.OpenRtb.BidRequest.Data;
 import com.google.openrtb.OpenRtb.BidRequest.Data.Segment;
 import com.google.openrtb.OpenRtb.BidRequest.Device;
@@ -765,6 +766,10 @@ public class OpenRtbJsonWriter extends AbstractOpenRtbJsonWriter {
     if (content.hasProdq()) {
       writeEnumField("prodq", content.getProdq(), gen);
     }
+    if (content.hasChannel()) {
+      gen.writeFieldName("channel");
+      writeChannel(content.getChannel(), gen);
+    }
   }
 
   public final void writeProducer(Producer producer, JsonGenerator gen) throws IOException {
@@ -784,6 +789,18 @@ public class OpenRtbJsonWriter extends AbstractOpenRtbJsonWriter {
     writeContentCategories("cat", producer.getCatList(), gen);
     if (producer.hasDomain()) {
       gen.writeStringField("domain", producer.getDomain());
+    }
+  }
+
+  public final void writeChannel(Channel channel, JsonGenerator gen) throws IOException {
+    gen.writeStartObject();
+    writeChannelFields(channel, gen);
+    gen.writeEndObject();
+  }
+
+  protected void writeChannelFields(Channel channel, JsonGenerator gen) throws IOException {
+    if (channel.hasName()) {
+      gen.writeStringField("name", channel.getName());
     }
   }
 
@@ -1166,6 +1183,9 @@ public class OpenRtbJsonWriter extends AbstractOpenRtbJsonWriter {
   protected void writeNodeFields(Node node, JsonGenerator gen) throws IOException {
     if (node.hasAsi()) {
       gen.writeStringField("asi", node.getAsi());
+    }
+    if (node.hasRid()) {
+      gen.writeStringField("rid", node.getRid());
     }
   }
 
