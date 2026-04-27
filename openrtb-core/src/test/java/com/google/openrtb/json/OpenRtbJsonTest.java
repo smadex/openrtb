@@ -32,6 +32,7 @@ import com.google.openrtb.OpenRtb.AuctionType;
 import com.google.openrtb.OpenRtb.BannerAdType;
 import com.google.openrtb.OpenRtb.BidRequest;
 import com.google.openrtb.OpenRtb.BidRequest.App;
+import com.google.openrtb.OpenRtb.BidRequest.Channel;
 import com.google.openrtb.OpenRtb.BidRequest.Content;
 import com.google.openrtb.OpenRtb.BidRequest.Data;
 import com.google.openrtb.OpenRtb.BidRequest.Data.Segment;

@@ -37,6 +37,7 @@ import com.google.openrtb.OpenRtb.BannerAdType;
 import com.google.openrtb.OpenRtb.BidRequest;
 import com.google.openrtb.OpenRtb.BidRequest.App;
 import com.google.openrtb.OpenRtb.BidRequest.Content;
+import com.google.openrtb.OpenRtb.BidRequest.Channel;
 import com.google.openrtb.OpenRtb.BidRequest.Data;
 import com.google.openrtb.OpenRtb.BidRequest.Data.Segment;
 import com.google.openrtb.OpenRtb.BidRequest.Device;
@@ -316,6 +317,8 @@ public class OpenRtbJsonReader extends AbstractOpenRtbJsonReader {
     switch (fieldName) {
       case "asi":
         node.setAsi(par.getValueAsString());
+      case "rid":
+        node.setRid(par.getValueAsString());
         break;
       default:
         break;
@@ -1263,6 +1266,9 @@ public class OpenRtbJsonReader extends AbstractOpenRtbJsonReader {
         }
       }
       break;
+      case "channel":
+        content.setChannel(readChannel(par));
+      break;
       default:
         readOther(content, par, fieldName);
     }
@@ -1301,6 +1307,28 @@ public class OpenRtbJsonReader extends AbstractOpenRtbJsonReader {
         break;
       default:
         readOther(producer, par, fieldName);
+    }
+  }
+
+  public final Channel.Builder readChannel(JsonParser par) throws IOException {
+    Channel.Builder channel = Channel.newBuilder();
+    for (startObject(par); endObject(par); par.nextToken()) {
+      String fieldName = getCurrentName(par);
+      if (par.nextToken() != JsonToken.VALUE_NULL) {
+        readChannelField(par, channel, fieldName);
+      }
+    }
+    return channel;
+  }
+
+  protected void readChannelField(JsonParser par, Channel.Builder channel, String fieldName)
+          throws IOException {
+    switch (fieldName) {
+      case "name":
+        channel.setName(par.getText());
+        break;
+      default:
+        par.skipChildren();
     }
   }
 
