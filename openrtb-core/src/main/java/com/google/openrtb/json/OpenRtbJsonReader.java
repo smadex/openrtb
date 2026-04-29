@@ -317,6 +317,7 @@ public class OpenRtbJsonReader extends AbstractOpenRtbJsonReader {
     switch (fieldName) {
       case "asi":
         node.setAsi(par.getValueAsString());
+        break;
       case "rid":
         node.setRid(par.getValueAsString());
         break;
